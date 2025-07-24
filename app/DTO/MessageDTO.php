@@ -2,9 +2,9 @@
 
 namespace App\DTO;
 
-class MessageDTO {
-    public function __construct(public string $message){
-    }
+class MessageDTO
+{
+    public function __construct(public string $message) {}
 
     public function getMessage()
     {

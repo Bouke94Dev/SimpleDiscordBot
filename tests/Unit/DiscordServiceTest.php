@@ -2,11 +2,11 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use App\Services\DiscordService;
-use App\Services\DiscordAPI;
 use App\DTO\MessageDTO;
+use App\Services\DiscordAPI;
+use App\Services\DiscordService;
 use Mockery;
+use Tests\TestCase;
 
 class DiscordServiceTest extends TestCase
 {
@@ -15,8 +15,8 @@ class DiscordServiceTest extends TestCase
     {
         $apiMock = Mockery::mock(DiscordAPI::class);
         $apiMock->shouldReceive('sendMessageToChannel')
-                ->once()
-                ->with('Test message');
+            ->once()
+            ->with('Test message');
 
         $service = new DiscordService($apiMock);
 
@@ -33,8 +33,8 @@ class DiscordServiceTest extends TestCase
 
         $apiMock = Mockery::mock(DiscordAPI::class);
         $apiMock->shouldReceive('sendMessageToChannel')
-                ->once()
-                ->andThrow(new \Exception('Unable to send message'));
+            ->once()
+            ->andThrow(new \Exception('Unable to send message'));
 
         $service = new DiscordService($apiMock);
 
