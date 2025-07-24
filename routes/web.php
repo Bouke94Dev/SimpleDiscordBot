@@ -7,4 +7,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/send', [DiscordController::class, 'sendMessage']);
+Route::get('/discord', [DiscordController::class, 'show'])->name('discord.options.show');
+Route::post('/discord', [DiscordController::class, 'handleForm'])->name('discord.handle.submit');

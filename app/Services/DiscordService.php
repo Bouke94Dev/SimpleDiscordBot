@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\MessageDTO;
 use Illuminate\Support\Facades\Http;
 
 class DiscordService
@@ -14,7 +15,7 @@ class DiscordService
         $this->channelId = config('services.discord.channel_id');
     }
 
-    public function sendMessage(string $message)
+    public function sendMessage(MessageDTO $message)
     {
         $url = "https://discord.com/api/v10/channels/{$this->channelId}/messages";
 
@@ -24,11 +25,10 @@ class DiscordService
             ])
             ->withOptions(['verify' => false]) // only used for testing!
             ->post($url, [
-                'content' => $message
+                'content' => $message->getMessage()
             ])->json();
-        
+
         return $response;
 
     }
-
 }
