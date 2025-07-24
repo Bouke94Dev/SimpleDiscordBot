@@ -10,10 +10,7 @@
         @csrf
 
         <label for="message">Message:</label><br>
-        <textarea name="message" id="message">{{ old('message') }}</textarea>
-        @error('message')
-            <p style="color:red;">{{ $message }}</p>
-        @enderror
+        <textarea name="message" id="message"></textarea>
 
         <button type="submit">Send</button>
     </form>
