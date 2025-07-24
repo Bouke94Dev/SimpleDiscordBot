@@ -2,8 +2,10 @@
 
 ## Description
 
-This is a really basic example on how to send a message with discord using discords REST api. It will be updated once more if I feel like it. 
-Please note that there are wrappers an/or other solutions around which provide much more flexibility.
+This is a really basic example on how to send a message with discord using discords REST api in Laravel I made. 
+Keep in mind that this is for learning purposes only.
+
+Note that there are wrappers an/or other solutions around which provide much more flexibility.
 
 please note I make use of:
 
@@ -40,4 +42,4 @@ Set this token in the env for example: `DISCORD_BOT_TOKEN=re89ryu9e8wry9ew`
 
 ### finishing touch
 
-When you have everything set, use the `php artisan serve` command to launch the application and send a message to discord through the simple form
+When you have everything set, use the `php artisan serve` command to launch the application and send a message to discord through the simple form.
