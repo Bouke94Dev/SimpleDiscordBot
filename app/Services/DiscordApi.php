@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\DTO\MessageDTO;
 use Illuminate\Support\Facades\Http;
 
 class DiscordApi
