@@ -2,14 +2,10 @@
 
 namespace Tests\Feature;
 
-use Mockery;
-use Tests\TestCase;
 use App\DTO\MessageDTO;
 use App\Services\DiscordService;
-use Illuminate\Support\Facades\Session;
-use App\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
+use Tests\TestCase;
 
 class DiscordControllerTest extends TestCase
 {
@@ -20,17 +16,17 @@ class DiscordControllerTest extends TestCase
         $this->app->instance(DiscordService::class, $mock);
 
         $mock->shouldReceive('sendMessage')
-             ->once()
-             ->withArgs(function (MessageDTO $dto) {
-                 return $dto->getMessage() === 'Testbericht';
-             });
+            ->once()
+            ->withArgs(function (MessageDTO $dto) {
+                return $dto->getMessage() === 'Test message';
+            });
 
         $response = $this->post(route('discord.handle.submit'), [
-            'message' => 'Testbericht',
+            'message' => 'Test message',
         ]);
 
         $response->assertRedirect();
-        $response->assertSessionHas('succes', 'bericht is verzonden');
+        $response->assertSessionHas('success', 'message sent succesfully');
     }
 
     /** @test */

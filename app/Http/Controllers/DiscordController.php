@@ -22,7 +22,7 @@ class DiscordController extends controller
 
         $discord->sendMessage($message);
 
-        return back()->with('succes', 'bericht is verzonden');  
+        return back()->with('success', 'message sent succesfully');  
 
     }
 }
