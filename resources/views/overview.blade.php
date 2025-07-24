@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Discord</title>
+</head>
+<body>
+    <h1>Stuur bericht naar kanaal</h1>
+
+    <form method="POST" action="{{ route('discord.handle.submit') }}">
+        @csrf
+
+        <label for="message">Bericht:</label><br>
+        <textarea name="message" id="message">{{ old('message') }}</textarea>
+        @error('message')
+            <p style="color:red;">{{ $message }}</p>
+        @enderror
+
+        <button type="submit">Verzenden</button>
+    </form>
+</body>
+</html>
