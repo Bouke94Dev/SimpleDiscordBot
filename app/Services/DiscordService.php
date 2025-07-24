@@ -7,28 +7,18 @@ use Illuminate\Support\Facades\Http;
 
 class DiscordService
 {
-    protected $token;
-    protected $channelId;
-
-    public function __construct(){
-        $this->token = config('services.discord.token');
-        $this->channelId = config('services.discord.channel_id');
+    public function __construct(protected DiscordAPI $discordAPi){
     }
 
-    public function sendMessage(MessageDTO $message)
-    {
-        $url = "https://discord.com/api/v10/channels/{$this->channelId}/messages";
+    public function sendMessage(MessageDTO $messageDto){
+        try {
+          $this->discordAPi->sendMessageToChannel($messageDto->getMessage());
+        }
+        catch (\Exception $e){
+            logger()->error('App was not able to send a message to discord channel' . $e->getMessage());
 
-        $response = Http::withHeaders([
-            'Authorization' => 'Bot ' . $this->token,
-            'Content-Type' => 'application/json',
-            ])
-            ->withOptions(['verify' => false]) // only used for testing!
-            ->post($url, [
-                'content' => $message->getMessage()
-            ])->json();
-
-        return $response;
+            throw new \RuntimeException('Unable to send message to discord channel');
+        }
 
     }
 }
